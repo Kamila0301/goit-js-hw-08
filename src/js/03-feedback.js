@@ -45,4 +45,4 @@ function populateMessageOutput() {
       form.elements[key].value = formData[key];
     }
   }
-}
+};
