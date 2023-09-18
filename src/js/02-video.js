@@ -12,7 +12,8 @@ player.getVideoTitle().then(function (title) {
   console.log('title:', title);
 });
 
-const onPlay = function (seconds) {
+const onPlay = function ({ seconds }) {
+  console.log(seconds)
     localStorage.setItem('videoplayer-current-time', seconds);
 }
 
