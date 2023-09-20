@@ -11,10 +11,7 @@ let STORAGE_KEY = 'feedback-form-state';
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onTextInput, 500));
 
-form.addEventListener('input', function (event) {
-  formData[event.target.name] = event.target.value;
-  LS.setItem('formData', JSON.stringify(formData));
-});
+
 
 populateMessageOutput();
 
@@ -36,13 +33,14 @@ function onFormSubmit(event) {
 }
 
 function onTextInput(event) {
+  formData[event.target.name] = event.target.value;
   LS.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function populateMessageOutput() {
   const savedMessage = LS.getItem(STORAGE_KEY);
-  if (LS.getItem('formData')) {
-    formData = JSON.parse(LS.getItem('formData'));
+  if (LS.getItem(STORAGE_KEY)) {
+    formData = JSON.parse(LS.getItem(STORAGE_KEY));
     for (let key in formData) {
       form.elements[key].value = formData[key];
     }
